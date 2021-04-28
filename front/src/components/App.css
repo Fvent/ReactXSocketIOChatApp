@@ -1,0 +1,27 @@
+@import '/node_modules/bootstrap/dist/css/bootstrap.min.css';
+/* @import '/node_modules/bootstrap/dist/js/bootstrap.js'; */
+
+body{
+    background-color: lightgrey;
+}
+.app{
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: white;
+    height: 100vh;
+    text-align: center;
+}
+.MessageFormDiv{
+    width: 50vw;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.messageDisplayDiv{
+    background-color: antiquewhite;
+}
+
+.messageDisplayUL{
+    list-style-type: none;
+}
