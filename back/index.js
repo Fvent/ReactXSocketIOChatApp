@@ -22,14 +22,16 @@ app.get('/', (req,res)=> {
 });
 
 io.on('connection', socket => {
-    console.log('user connected');
+    console.log('connection has been made with', socket.handshake.headers.origin);
+
+
     socket.on('message', data => {
         console.log(data);
         socket.broadcast.emit('message', data);
     });
     
     socket.on('disconnect', () => {
-        console.log('user disconnected');
+        console.log('disconnected from origin', socket.handshake.headers.origin);
     })
 });
 

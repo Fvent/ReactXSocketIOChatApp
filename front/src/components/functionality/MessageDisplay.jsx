@@ -1,4 +1,5 @@
 import React from 'react';
+import { ListGroup } from 'react-bootstrap';
 import {io} from 'socket.io-client';
 
 var socket;
@@ -17,7 +18,8 @@ export class MessageDisplay extends React.Component {
         socket = io(this.state.endpoint);
         socket.on('message', data => {
             console.log(data);
-            var node = document.createElement('LI');
+            var node = document.createElement('div');
+            node.setAttribute('class', 'list-group-item');
             var text = document.createTextNode(data.message);
             node.appendChild(text);
             document.getElementById('messageDisplayUL').appendChild(node);
@@ -30,9 +32,12 @@ export class MessageDisplay extends React.Component {
     // document.getElementById('message-ul').appendChild(node);
     render(){
         return (<div className="messageDisplayDiv">
-            <ul className="messageDisplayUL" id='messageDisplayUL'>
+            {/* <ul className="messageDisplayUL" id='messageDisplayUL'>
 
-            </ul>
+            </ul> */}
+            <ListGroup id='messageDisplayUL'>
+
+            </ListGroup>
         </div>);
     }
 
