@@ -1,30 +1,30 @@
 // import { Button } from 'bootstrap';
 import React from 'react';
 import { FormControl } from 'react-bootstrap';
-import {io} from 'socket.io-client'
+// import {io} from 'socket.io-client'
 
-var socket;
+
 export class MessageForm extends React.Component {
     constructor(props){
         super(props);
 
-        this.state = {
-            endpoint: 'http://localhost:3500/'
-        }
+        // this.state = {
+        //     endpoint: 'http://localhost:3500/'
+        // }
 
         this.handleSubmit = this.handleSubmit.bind(this);
         // socket = io(this.state.endpoint);
         
     }
-    componentDidMount(){
-        socket = io(this.state.endpoint);
-    }
+    // componentDidMount(){
+    //     socket = io(this.state.endpoint);
+    // }
 
     handleSubmit(event){
         event.preventDefault();
         console.log(event.target.messageInput.value);
         // location.reload();
-        socket.emit('message', {message: event.target.messageInput.value});
+        this.props.socketConnection.emit('message', {message: event.target.messageInput.value});
         document.getElementById('MessageForm').reset()
     }
 

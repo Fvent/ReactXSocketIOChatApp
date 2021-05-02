@@ -2,21 +2,32 @@ import React from 'react';
 import { ListGroup } from 'react-bootstrap';
 import {io} from 'socket.io-client';
 
-var socket;
+
 
 export class MessageDisplay extends React.Component {
 
     constructor(props){
         super(props);
         this.state = {
-            endpoint: 'http://localhost:3500/'
+            socket: io('http://localhost:3500/')
         }
         // socket = io(this.state.endpoint);
+      
     }
 
-    componentDidMount(){
-        socket = io(this.state.endpoint);
-        socket.on('message', data => {
+    componentDidMount(){  
+        this.state.socket.on('message', data => {
+            console.log(data);
+            var node = document.createElement('div');
+            node.setAttribute('class', 'list-group-item');
+            var text = document.createTextNode(data.message);
+            node.appendChild(text);
+            document.getElementById('messageDisplayUL').appendChild(node);
+        });
+    }
+
+    componentDidUpdate(){
+        this.props.socketConnection.on('message', data => {
             console.log(data);
             var node = document.createElement('div');
             node.setAttribute('class', 'list-group-item');
