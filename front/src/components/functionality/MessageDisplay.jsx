@@ -42,7 +42,7 @@ export class MessageDisplay extends React.Component {
     // node.appendChild(text);
     // document.getElementById('message-ul').appendChild(node);
     render(){
-        return (<div className="messageDisplayDiv">
+        return (<div id="messageDisplayDiv">
             {/* <ul className="messageDisplayUL" id='messageDisplayUL'>
 
             </ul> */}
