@@ -12,21 +12,23 @@ export class LoginForm extends React.Component {
         console.log(event.target.usernameInput.value);
         var payload = {username: event.target.usernameInput.value, password: event.target.passwordInput.value};
         var xhr = new XMLHttpRequest();
-        var url = 'http://localhost:3500';
+        var url = 'http://localhost:3500/login';
         xhr.open('POST', url);
         xhr.setRequestHeader("Content-Type", "application/json");
-        xhr.send(JSON.stringify(payload));
         xhr.onreadystatechange = () => {
-            
+            console.log(xhr.response);
         };
-
+        xhr.send(JSON.stringify(payload));
+        
         document.getElementById('loginForm').reset();
     }
 
     render(){
         return (<div id="loginFormDiv">
             <form id="loginForm" onSubmit={this.handleSubmit}>
+                <label for="usernameInput"><h4>Username</h4></label>
                 <FormControl type="text" name="usernameInput" id="usernameInput"></FormControl>
+                <label for="passwordInput"><h4>Password</h4></label>
                 <FormControl type="password" name="passwordInput" id="passwordInput"></FormControl>
                 <button type="submit" className="btn btn-primary">Login</button>
             </form>

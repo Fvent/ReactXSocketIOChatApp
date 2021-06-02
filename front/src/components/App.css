@@ -23,3 +23,9 @@ body{
     margin-left: auto;
     margin-right: auto;
 }
+
+#loginFormDiv{
+    width: 40%;
+    margin-left: auto;
+    margin-right: auto;
+}

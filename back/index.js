@@ -3,8 +3,10 @@ var app = express();
 var server = require('http').createServer(app);
 var cors = require('cors');
 var bodyParser = require('body-parser');
+var mongoose = require('mongoose');
 
-app.use(bodyParser);
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 
 var io = require('socket.io')(server, {
     cors: {
@@ -23,13 +25,36 @@ var corsOptions = {
 
 app.use(cors(corsOptions));
 
+mongoose.connect('mongodb://localhost/SimpleAPI', {useNewUrlParser: true, useUnifiedTopology: true});
+
+var userSchema = mongoose.Schema({
+    username: String,
+    password: String
+});
+
+var UserModel = mongoose.model("User", userSchema);
+
 app.get('/', (req,res) => {
     res.send('express server running')
 });
 
 app.post('/' ,(req,res) => {
+    
+});
+
+app.post('/login' , async (req,res) => {
     var payload = req.body;
     console.log(payload);
+    var response;
+
+    await UserModel.find({username: payload.username, password: payload.password}, (err, docs) => {
+        console.log(docs);
+        // response = docs;
+        if(docs.length===0){
+            res.send("Invalid credentials");
+        }
+    }).exec();
+   
 });
 
 
