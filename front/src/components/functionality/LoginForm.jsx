@@ -17,6 +17,9 @@ export class LoginForm extends React.Component {
         xhr.setRequestHeader("Content-Type", "application/json");
         xhr.onreadystatechange = () => {
             console.log(xhr.response);
+            // if(xhr.responseText !== 'Invalid credentials'){
+            //     return 
+            // }
         };
         xhr.send(JSON.stringify(payload));
         

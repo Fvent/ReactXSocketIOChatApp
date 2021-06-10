@@ -9,14 +9,14 @@ export class MessageDisplay extends React.Component {
     constructor(props){
         super(props);
         this.state = {
-            socket: io('http://localhost:3500/')
+            socketConnection: io('http://localhost:3500/')
         }
         // socket = io(this.state.endpoint);
       
     }
 
     componentDidMount(){  
-        this.state.socket.on('message', data => {
+        this.state.socketConnection.on('message', data => {
             console.log(data);
             var node = document.createElement('div');
             node.setAttribute('class', 'list-group-item');
